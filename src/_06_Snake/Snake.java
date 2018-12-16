@@ -71,11 +71,24 @@ public class Snake {
 	}
 
 	public void setDirection(Direction d) {
+
 		// 1. set the current direction equal to the passed in Direction only if canMove
 		// is true.
 		if (canMove == true) {
 			currentDirection = d;
 			canMove = false;
+			if (d == Direction.DOWN && currentDirection != Direction.UP) {
+				currentDirection = Direction.DOWN;
+			}
+			if (d == Direction.UP && currentDirection != Direction.DOWN) {
+				currentDirection = Direction.UP;
+			}
+			if (d == Direction.RIGHT && currentDirection != Direction.LEFT) {
+				currentDirection = Direction.RIGHT;
+			}
+			if (d == Direction.LEFT && currentDirection != Direction.RIGHT) {
+				currentDirection = Direction.LEFT;
+			}
 		}
 		// set canMove equal to false.
 		// make sure the snake cannot completely reverse directions.
@@ -84,17 +97,19 @@ public class Snake {
 
 	public void reset(Location loc) {
 		// 1. clear the snake
-
+		snake.clear();
 		// 2. set the location of the head
 
+		head.setLocation(new Location(7, 6));
 		// 3. add the head to the snake
-
+		snake.add(head);
 	}
 
 	public boolean isOutOfBounds() {
 		// 1. complete the method so it returns true if the head of the snake is outsize
 		// of the window
 		// and false otherwise
+		if(head.getLocation().getX() > )
 
 		return false;
 	}

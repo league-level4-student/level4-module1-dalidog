@@ -118,8 +118,10 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 		switch (e.getKeyCode()) {
 		case 38:
-			snake.setDirection(Direction.UP);
-			break;
+			if (Snake.isUp == false) {
+				snake.setDirection(Direction.UP);
+				break;
+			}
 		case 40:
 			snake.setDirection(Direction.DOWN);
 			break;
