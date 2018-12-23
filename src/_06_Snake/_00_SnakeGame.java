@@ -118,10 +118,8 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 		switch (e.getKeyCode()) {
 		case 38:
-			if (Snake.isUp == false) {
-				snake.setDirection(Direction.UP);
-				break;
-			}
+			snake.setDirection(Direction.UP);
+			break;
 		case 40:
 			snake.setDirection(Direction.DOWN);
 			break;
@@ -145,13 +143,13 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 	private void setFoodLocation() {
 		// 1. Create a new Location object that is set to a random location
-		while (snake.isLocationOnSnake(foodLocation) == true) {
+		do {
 			Random generator = new Random();
 			int xcor = generator.nextInt(500);
 			int ycor = generator.nextInt(500);
 			Location l = new Location(xcor, ycor);
 			foodLocation = l;
-		}
+		} while (snake.isLocationOnSnake(foodLocation) == true);
 		// 2. set the foodLocation variable equal to the Location object you just
 		// created.
 		// use the snake's isLocationOnSnake method to make sure you don't put the food

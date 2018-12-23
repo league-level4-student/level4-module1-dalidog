@@ -54,7 +54,7 @@ public class Snake {
 			newX = head.getLocation().getX() + 5;
 			break;
 		}
-		for (int i = snake.size(); i > 0; i--) {
+		for (int i = snake.size() - 1; i > 0; i--) {
 			Location newloc = snake.get(i - 1).getLocation();
 			newloc = snake.get(i).getLocation();
 		}
@@ -109,7 +109,10 @@ public class Snake {
 		// 1. complete the method so it returns true if the head of the snake is outsize
 		// of the window
 		// and false otherwise
-		if(head.getLocation().getX() > )
+		if (head.getLocation().getX() > 15 || head.getLocation().getX() < 0 || head.getLocation().getY() > 12
+				|| head.getLocation().getY() < 0) {
+			return true;
+		}
 
 		return false;
 	}
@@ -117,14 +120,22 @@ public class Snake {
 	public boolean isHeadCollidingWithBody() {
 		// 1. complete the method so it returns true if the head is located
 		// in the same location as any other body segment
-
+		for (int i = 1; i < snake.size(); i++) {
+			if (head.getLocation() == snake.get(i).getLocation()) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	public boolean isLocationOnSnake(Location loc) {
 		// 1. complete the method so it returns true if the passed in
 		// location is located on the snake
-
+		for (int i = 0; i < snake.size(); i++) {
+			if (loc == snake.get(i).getLocation()) {
+				return true;
+			}
+		}
 		return false;
 	}
 
