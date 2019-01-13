@@ -85,13 +85,13 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// 2. Use a switch statement to determine which difficulty was chosen.
 		switch (choice) {
 		case "Expert":
-			timer.setDelay(5);
+			timer.setDelay(200);
 			break;
 		case "Moderate":
-			timer.setDelay(10);
+			timer.setDelay(500);
 			break;
 		case "Beginner":
-			timer.setDelay(15);
+			timer.setDelay(1000);
 			break;
 		}
 		timer.start();
@@ -145,8 +145,8 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// 1. Create a new Location object that is set to a random location
 		do {
 			Random generator = new Random();
-			int xcor = generator.nextInt(500);
-			int ycor = generator.nextInt(500);
+			int xcor = generator.nextInt(15);
+			int ycor = generator.nextInt(12);
 			Location l = new Location(xcor, ycor);
 			foodLocation = l;
 		} while (snake.isLocationOnSnake(foodLocation) == true);
@@ -165,11 +165,12 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		String userAnswer = JOptionPane
 				.showInputDialog("Your snake is dead! Do you want to play again? Type 'yes' or 'no'");
 		// 3. ask them if they want to play again.
-		if (userAnswer == "yes") {
+		if (userAnswer.equals("yes")) {
 			startGame();
 			setFoodLocation();
 			timer.start();
-		} else if (userAnswer == "no") {
+			snake.reset(new Location(WIDTH / 2, HEIGHT / 2));
+		} else if (userAnswer.equals("no")) {
 			System.exit(0);
 		}
 		// 4. if they want to play again
@@ -197,7 +198,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		}
 		// 3. if the location of the head is equal to the location of the food,
 		// feed the snake and set the food location
-		if (snake.getHeadLocation() == foodLocation) {
+		if (snake.getHeadLocation().equals(foodLocation)) {
 			snake.feed();
 			setFoodLocation();
 		}
